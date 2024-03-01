@@ -71,7 +71,7 @@ void flipIt(void* buffer)										// Flips The Red And Blue Bytes (256x256)
 	}
 }
 
-void OpenAVI(LPCSTR szFile)										// Opens An AVI File (szFile)
+void OpenAVI(wchar_t szFile[]= L"data/face2.avi" )										// Opens An AVI File (szFile)
 {
 	TCHAR	title[100];											// Will Hold The Modified Window Title
 
@@ -81,7 +81,7 @@ void OpenAVI(LPCSTR szFile)										// Opens An AVI File (szFile)
 	if (AVIStreamOpenFromFile(&pavi, szFile, streamtypeVIDEO, 0, OF_READ, NULL) !=0)
 	{
 		// An Error Occurred Opening The Stream
-		MessageBox (HWND_DESKTOP, "Failed To Open The AVI Stream", "Error", MB_OK | MB_ICONEXCLAMATION);
+		MessageBox (HWND_DESKTOP, L"Failed To Open The AVI Stream", L"Error", MB_OK | MB_ICONEXCLAMATION);
 	}
 
 	AVIStreamInfo(pavi, &psi, sizeof(psi));						// Reads Information About The Stream Into psi
@@ -106,11 +106,11 @@ void OpenAVI(LPCSTR szFile)										// Opens An AVI File (szFile)
 	if (pgf==NULL)
 	{
 		// An Error Occurred Opening The Frame
-		MessageBox (HWND_DESKTOP, "Failed To Open The AVI Frame", "Error", MB_OK | MB_ICONEXCLAMATION);
+		MessageBox (HWND_DESKTOP, L"Failed To Open The AVI Frame", L"Error", MB_OK | MB_ICONEXCLAMATION);
 	}
 
 	// Information For The Title Bar (Width / Height / Last Frame)
-	wsprintf (title, "NeHe's AVI Player: Width: %d, Height: %d, Frames: %d", width, height, lastframe);
+	wsprintf (title, L"NeHe's AVI Player: Width: %d, Height: %d, Frames: %d", width, height, lastframe);
 	SetWindowText(g_window->hWnd, title);						// Modify The Title Bar
 }
 
@@ -164,7 +164,7 @@ BOOL Initialize (GL_Window* window, Keys* keys)					// Any GL Init Code & User I
 	glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP);		// Set The Texture Generation Mode For S To Sphere Mapping
 	glTexGeni(GL_T, GL_TEXTURE_GEN_MODE, GL_SPHERE_MAP);		// Set The Texture Generation Mode For T To Sphere Mapping
 
-	OpenAVI("data/face2.avi");									// Open The AVI File
+	OpenAVI(L"data/face2.avi");									// Open The AVI File
 
 	// Create The Texture
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 256, 256, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
