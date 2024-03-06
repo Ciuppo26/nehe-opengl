@@ -71,7 +71,7 @@ void flipIt(void* buffer)										// Flips The Red And Blue Bytes (256x256)
 	}
 }
 
-void OpenAVI(wchar_t szFile[]= L"data/face2.avi" )										// Opens An AVI File (szFile)
+void OpenAVI(LPCSTR szFile)										// Opens An AVI File (szFile)
 {
 	TCHAR	title[100];											// Will Hold The Modified Window Title
 
@@ -81,7 +81,7 @@ void OpenAVI(wchar_t szFile[]= L"data/face2.avi" )										// Opens An AVI File
 	if (AVIStreamOpenFromFile(&pavi, szFile, streamtypeVIDEO, 0, OF_READ, NULL) !=0)
 	{
 		// An Error Occurred Opening The Stream
-		MessageBox (HWND_DESKTOP, L"Failed To Open The AVI Stream", L"Error", MB_OK | MB_ICONEXCLAMATION);
+		MessageBox (HWND_DESKTOP, "Failed To Open The AVI Stream", "Error", MB_OK | MB_ICONEXCLAMATION);
 	}
 
 	AVIStreamInfo(pavi, &psi, sizeof(psi));						// Reads Information About The Stream Into psi
@@ -106,11 +106,11 @@ void OpenAVI(wchar_t szFile[]= L"data/face2.avi" )										// Opens An AVI File
 	if (pgf==NULL)
 	{
 		// An Error Occurred Opening The Frame
-		MessageBox (HWND_DESKTOP, L"Failed To Open The AVI Frame", L"Error", MB_OK | MB_ICONEXCLAMATION);
+		MessageBox (HWND_DESKTOP, "Failed To Open The AVI Frame", "Error", MB_OK | MB_ICONEXCLAMATION);
 	}
 
 	// Information For The Title Bar (Width / Height / Last Frame)
-	wsprintf (title, L"NeHe's AVI Player: Width: %d, Height: %d, Frames: %d", width, height, lastframe);
+	wsprintf (title, "NeHe's AVI Player: Width: %d, Height: %d, Frames: %d", width, height, lastframe);
 	SetWindowText(g_window->hWnd, title);						// Modify The Title Bar
 }
 
@@ -257,9 +257,9 @@ void Draw (void)												// Draw Our Scene
 		glEnable(GL_TEXTURE_GEN_T);								// Enable Texture Coord Generation For T (NEW)
 	}
 	
-	glRotatef(angle*2.3f,1.0f,0.0f,0.0f);						// Throw In Some Rotations To Move Things Around A Bit
-	glRotatef(angle*1.8f,0.0f,1.0f,0.0f);						// Throw In Some Rotations To Move Things Around A Bit
-	glTranslatef(0.0f,0.0f,2.0f);								// After Rotating Translate To New Position
+	//glRotatef(angle*2.3f,1.0f,0.0f,0.0f);						// Throw In Some Rotations To Move Things Around A Bit
+	//glRotatef(angle*1.8f,0.0f,1.0f,0.0f);						// Throw In Some Rotations To Move Things Around A Bit
+	//glTranslatef(0.0f,0.0f,2.0f);								// After Rotating Translate To New Position
 
 	switch (effect)												// Which Effect?
 	{
